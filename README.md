@@ -16,7 +16,6 @@
 
   ```
   <script type="text/javascript" src="https://api.voiceloco.com/demo/voicelocojs_min.js" ></script>
-  
   ```
 
 * ### AccessToken 요청 및 미디어 서버 등록
