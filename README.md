@@ -1,11 +1,11 @@
-# Voiceloco Call SDK Web 시작하기
+# Voiceloco SDK - Web 시작하기
 
 > ## 시작하기
-
-* ### 시스템 요구사항
-
-  [Sample project ](https://github.com/VoicelocoSDK/voice-sample-android)를 빌드하기 위해서는 [Android Studio](https://developer.android.com/studio/index.html)와 최소 17레벨 이상의 SDK 플랫폼, 그리고 지원 라이브러리가 설치되어야 합니다.
-
+  
+  Demo : https://api.voiceloco.com/demo
+* ### Supported Browser
+  Voiceloco SDK - Web은 Webrtc를 지원하는 브라우져 Chrome, Opera등에서 작동합니다.
+ 
 * ### Web SDK 설정 - Static import
 
   Voiceloco의 Call SDK를 사용하기 위해서는 아래와 같이 voicelocojs_min.js를 HTML파일에 추가해야 합니다.
