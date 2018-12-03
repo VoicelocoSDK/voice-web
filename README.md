@@ -46,7 +46,7 @@
 
   ## Call
 
-  # 전화 발신
+  #### 전화 발신
   상대방의 userId를 입력하여 call 함수를 호출. Video Call인 경우 "video" 인자값을 추가로 입력한다.
   ```
   //1. Audio Call
@@ -56,19 +56,19 @@
   voiceApi.call(remoteUserId, "video");
   ```
 
-  # 발신 취소 / 전화 끊기
+  #### 발신 취소 / 전화 끊기
   현재 발신 시도중인 Call 연결을 취소하거나, 현재 Call이 연결된 상태에서 통화 종료를 할 때 호출한다.
   ```
   voiceApi.hangup();
   ```
 
-  # 전화 받기
+  #### 전화 받기
   Call 요청을 수락할 때 호출한다.
   ```
   voiceApi.accept();
   ```
 
-  # 전화 거절  
+  #### 전화 거절  
   Call 요청에 대한 거절을 할 때 호출한다.
   ```
   voiceApi.reject();
@@ -76,7 +76,7 @@
 
   ## Event Handler
   
-  #General Event
+  ### General Event
   정상적인 Call 시나리오에 대한 Event 리스너로써, 최초 Call 발신으로부터 시작하여 Call 종료까지 각각의 상태에 대한 처리를 위한 함수
 
   | message | 설명 |
@@ -116,7 +116,7 @@
 
         };
   ```
-  #Error Event
+  ### Error Event
   AccessToken 인증 오류, Config Validation에러 및 잘못된 Api사용 등으로 발생하는 에러에 대한 event 리스너.
   ```
   voiceApi.on_error = function (e){
