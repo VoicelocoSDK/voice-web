@@ -8,7 +8,7 @@
   Demo: https://api.voiceloco.com/demo
   
 * ### Supported Browser
-  Voiceloco SDK - Web은 Webrtc를 지원하는 브라우져 Chrome, Opera등에서 작동합니다.
+  Voiceloco SDK - Web은 Webrtc를 지원하는 브라우저(Chrome, Opera등)에서 작동합니다.
  
 * ### Web SDK 설정 - Static import
 
@@ -77,7 +77,7 @@
   ## Event Handler
   
   ### General Event
-  정상적인 Call 시나리오에 대한 Event 리스너로써, 최초 Call 발신으로부터 시작하여 Call 종료까지 각각의 상태에 대한 처리를 위한 함수
+  정상적인 Call 시나리오에 대한 Event 리스너로써, 최초 Call 발신으로부터 시작하여 Call 종료까지 각각의 상태에 대해서 처리하기 위한 부분.
 
   | message | 설명 |
   | -------- | -------- |
