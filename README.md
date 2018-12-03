@@ -4,7 +4,9 @@
   Voiceloco SDK Web은 Web기반 Application에 실시간 Voice/Video 기능을 추가 해줍니다.
   
   Voiceloco Api Homepage : https://api.voiceloco.com
-  Demo Page: https://api.voiceloco.com/demo
+  
+  Demo: https://api.voiceloco.com/demo
+  
 * ### Supported Browser
   Voiceloco SDK - Web은 Webrtc를 지원하는 브라우져 Chrome, Opera등에서 작동합니다.
  
@@ -21,11 +23,9 @@
   VoiceLoco Call SDK를 사용하기 위해서는 AccessToken을 VoiceLoco 서버로부터 발급받아야 합니다. 
   AccessToken은 사용자의 인증키로 사용이 되며, 보안을 위해 AcessToken은 자체 서버에서 구현하여 발급 받아야 합나다.
   테스트 용 SDK에서는 AccessToken 없이 사용할 수 있도록 개발 되었습니다.
-  ```
-    Register register = Register.getInstance();
-    register.start(MainActivity.this, id, appId, result, fcmToken);
-  ```
+ 
 * ### 사용법
+
   ## Register
   Voiceloco SDK의 Call 기능을 사용하기 위한 과정으로써, Config validation, AccessToken 인증, Call에 필요한 초기화 작업을 수행한다.
   ```
@@ -78,8 +78,9 @@
   
   #General Event
   정상적인 Call 시나리오에 대한 Event 리스너로써, 최초 Call 발신으로부터 시작하여 Call 종료까지 각각의 상태에 대한 처리를 위한 함수
+
   | message | 설명 |
-  |:--------|:--------:|
+  | -------- | -------- |
   | initiating | Api 초기화를 시작함. Config Validation 및 AccessToken 인증 과정을 수행|
   | ready | Api 초기화가 정상적으로 수행되어, 정상적으로 Call 발신/수신을 할수 있는 상태|
   | connecting | Call 발신을 시작하는 상태 |
@@ -88,6 +89,7 @@
   | terminating | Call 종료를 시작하는 상태|
   | terminated | Call 종료에 대한 작업이 정상적으로 처리된 상태 |
   | new_call | 새로운 Call이 요청된 상태 |  
+
   ```
   voiceApi.on_event = function (e) {
             // event handling
