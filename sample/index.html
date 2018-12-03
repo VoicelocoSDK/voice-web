@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>Voiceloco Api : Demo </title>
+    <!--<link href='fonts/NotoSansKR-Hestia.css?ver=1.0.1' rel='stylesheet' type='text/css'>-->
+    <link href="css/sample.css?ver=1.0.0" rel="stylesheet">
+
+    <script type="text/javascript" src="https://api.voiceloco.com/demo/VoicelocoJS_min.js" ></script>
+    <!--<script type="text/javascript" src="../VoicelocoJS_One.js" ></script>-->
+</head>
+<script>
+    function register() {
+        var userId = document.getElementById("userId").value;
+
+        var config = {
+            userId: userId,
+            appId: "testAppId",
+            accessToken: "",
+
+            //for video - optional
+            video: {
+                local: "video_local",
+                remote: "video_remote"
+            }
+        }
+
+        var voiceApi = new VoicelocoJs(config);
+
+        voiceApi.on_event = function (e) {
+            // event handling
+            // e.type, e.message, e.reason
+
+            switch (e.message) {
+                case "initiating":
+                    window.console.info(e.message);
+                    break;
+                case "ready":
+                    window.console.info(e.message);
+                    document.getElementById("remoteUserId").disabled = false;
+                    document.getElementById("call-bt").disabled = false;
+
+                    break;
+                case "connecting":
+                    document.getElementById("call-bt").classList.add("hide");
+                    document.getElementById("hangup-bt").classList.remove("hide");
+                    document.getElementById("remote-user-div").classList.add("hide");
+                    document.getElementById("remote-user-div").classList.add("hide");
+                    window.console.info(e.message);
+                    break;
+                case "connected":
+                    document.getElementById("call-bt").classList.add("hide");
+                    document.getElementById("remote-user-div").classList.add("hide");
+                    document.getElementById("hangup-bt").classList.remove("hide");
+                    document.getElementById("remote-user-div").classList.add("hide");
+                    window.console.info(e.message);
+                    break;
+                case "busy":
+                    window.console.info(e.message);
+                    document.getElementById("hangup-bt").classList.add("hide");
+                    document.getElementById("call-bt").classList.remove("hide");
+                    document.getElementById("remote-user-div").classList.add("hide");
+                    break;
+                case "terminating":
+                    window.console.info(e.message);
+                    break;
+                case "terminated":
+                    window.console.info(e.message);
+                    document.getElementById("hangup-bt").classList.add("hide");
+                    document.getElementById("call-bt").classList.remove("hide");
+                    document.getElementById("remote-user-div").classList.add("hide");
+                    break;
+                case "new_call":
+                    window.console.info(e.message);
+                    document.getElementById("remoteUserId").value = e.reason;
+                    document.getElementById("remote-user-name").innerHTML = e.reason;
+                    document.getElementById("remote-user-div").classList.remove("hide");
+
+                    break;
+            }
+
+        };
+        voiceApi.on_error = function (e){
+            //error handling
+            // e.type, e.message, e.reason
+            window.console.info(e.message);
+        }
+
+        //make call
+        this.call = function () {
+            var remoteUserId = document.getElementById("remoteUserId").value;
+
+            //normal call
+//            voiceApi.call(remoteUserId);
+
+            //video call
+            voiceApi.call(remoteUserId, "video");
+        }
+
+        //accept call
+        this.accept = function() {
+            voiceApi.accept();
+        }
+
+        //cancel call, end call
+        this.hangup = function() {
+            voiceApi.hangup();
+        }
+
+        //reject call
+        this.reject = function(){
+            voiceApi.reject();
+        }
+    }
+
+
+
+
+
+</script>
+<body>
+<div style="display: flex;align-items: center;justify-content: center;margin-top: 30px;">
+    <div><img src="img/voiceloco-api.svg"></div>
+</div>
+<div style="display: flex;align-items: center;justify-content: center;margin-top:30px;border-top: 1px solid #e6eaee;">
+
+    <div class="box" style="display: flex;flex-direction: column">
+
+            <div style="display: flex;">
+                <div class="label">Local</div>
+                <div>
+                    <input class="input" type="text" id="userId" placeholder="user id">
+                </div>
+                <div>
+                    <button class="BlackButton" style="margin-left: 3px;" onclick="register()">Register</button>
+                </div>
+            </div>
+
+            <div style="height: 300px;">
+                <video class="video" id="video_local"></video>
+            </div>
+
+
+        </div>
+        <div class="box" style="display: flex;flex-direction: column;">
+            <div style="display: flex;justify-content: center;">
+                <div class="label">Remote</div>
+                <div>
+                    <input class="input" type="text" id="remoteUserId" placeholder="remote user id" disabled>
+                </div>
+                <div style="margin-left: 3px;">
+                    <button id="call-bt"   class="CyanButton" onclick="call()" disabled>Call</button>
+                    <button id="hangup-bt" class="RedButton hide" onclick="hangup()">EndCall</button>
+                </div>
+            </div>
+
+            <div style="height: 300px;">
+
+                <div id="remote-user-div" class="remote hide">
+                    <div class="label" style="border: none;width: 200px;">Incoming Call</div>
+
+                    <div id="remote-user-name" class="label" style="font-size:15px;font-weight: 300;
+                    border: none;width: 100%;margin-top: 20px;"></div>
+
+                    <div style="display: flex;align-items: center;justify-content: center;margin-top: 30px;">
+                        <button id="accept-bt" class="CyanButton" onclick="accept()">AcceptCall</button>
+                        <button id="reject-bt" class="RedButton" style="margin-left: 50px;" onclick="reject()">RejectCall</button>
+                    </div>
+                </div>
+                <video class="video"  id="video_remote"></video>
+            </div>
+        </div>
+    </div>
+    <div class="label" style="position: fixed;bottom: 50px;align-items: center;width: 100%;font-size: 12px;border: none;">© voiceloco, Inc. All Right Reserved</div>
+</div>
+
+<!--<audio id="ringtone" loop src="audio/ciao-ringtone.wav"/>-->
+<!--<audio id="ringback" loop src="audio/ciao-ringback.wav"/>-->
+<!--<audio id="beep" src="audio/05-call_ended.wav"/>-->
+
+</body>
+</html>
