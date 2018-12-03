@@ -15,7 +15,7 @@
   Voiceloco의 Call SDK를 사용하기 위해서는 아래와 같이 voicelocojs_min.js를 HTML파일에 추가해야 합니다.
 
   ```
-  <script src="import: https://github.com/VoicelocoSDK/voice-web/blob/master/voicelocojs_min.js"></script>
+<script type="text/javascript" src="https://api.voiceloco.com/demo/voicelocojs_min.js" ></script>
   ```
 
 * ### AccessToken 요청 및 미디어 서버 등록
