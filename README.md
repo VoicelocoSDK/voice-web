@@ -29,7 +29,7 @@
   ## Register
   Voiceloco SDK의 Call 기능을 사용하기 위한 과정으로써, Config validation, AccessToken 인증, Call에 필요한 초기화 작업을 수행한다.
   ```
-   var config = {
+  var config = {
             userId: userId, //사용자의 userId
             appId: "testAppId", //Voiceloco SDK를 적용한 어플리케이션의 appId
             accessToken: "", //사용자 인증에 필요한 key로써 테스트용 SDK에는 필요하지 않음
@@ -40,8 +40,8 @@
                 remote: "video_remote" //상대방의 화면을 표시할 video element의 id
             }
         }
+        
    var voiceApi = new VoicelocoJs(config);
-   
   ```
 
   ## Call
